@@ -31,11 +31,12 @@ export async function getPokemonSingle(url) {
 export async function getPokemonSingleReduced(url) {
   var pokemonFull = await getPokemonSingle(url);
   return {
+    id: pokemonFull.id,
     name: pokemonFull.name,
     hp: pokemonFull.stats.find((x) => x.stat.name == "hp").base_stat,
     attack: pokemonFull.stats.find((x) => x.stat.name === "attack").base_stat,
     defense: pokemonFull.stats.find((x) => x.stat.name === "defense").base_stat,
     speed: pokemonFull.stats.find((x) => x.stat.name === "speed").base_stat,
-    image: pokemon.sprites.other.dream_world.front_default,
+    image: pokemonFull.sprites.other.dream_world.front_default,
   };
 }
