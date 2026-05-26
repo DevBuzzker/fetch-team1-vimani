@@ -1,14 +1,14 @@
 export function showPokemonCard(pokemon) {
-  const bodyElement = document.querySelector("body");
-  // console.log(bodyElement);
+  const container = document.querySelector("main");
   console.log(pokemon);
   const div = document.createElement("div");
   div.classList.add("border-black");
   div.classList.add("border-1");
   div.classList.add("m-2");
   div.classList.add("p-2");
-  div.classList.add("max-w-40");
+  div.classList.add("w-40");
   div.classList.add("text-center");
+  div.classList.add("flex-shrink-0");
 
   const img = document.createElement("img");
   img.src = pokemon.image;
@@ -18,5 +18,5 @@ export function showPokemonCard(pokemon) {
   titlePara.textContent = "#" + pokemon.id + " " + pokemon.name;
   div.appendChild(titlePara);
 
-  bodyElement.appendChild(div);
+  container.appendChild(div);
 }
