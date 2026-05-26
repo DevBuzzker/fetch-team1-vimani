@@ -1,5 +1,5 @@
 import { getPokemonAllWithInfos } from "./getPokemonAll.js";
-import { showPokemonCard } from "./showPokemonCard.js";
+import { showPokemonCard, showScrollElements } from "./showPokemonCard.js";
 
 console.log("main.js");
 const bodyElement = document.querySelector("body");
@@ -9,6 +9,7 @@ const bodyElement = document.querySelector("body");
 // bodyElement.classList.add("auto-rows-auto");
 // bodyElement.classList.add("mx-4");
 console.log(bodyElement);
+showScrollElements();
 
 getPokemonAllWithInfos(0, 10).then((pokemons) => {
   console.log(pokemons);
