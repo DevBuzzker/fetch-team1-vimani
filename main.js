@@ -1,4 +1,5 @@
 import { getPokemonAllWithInfos } from "./getPokemonAll.js";
+import { initSearchDialog } from "./searchDialog.js";
 
 console.log("main.js");
 const bodyElement = document.querySelector("body");
@@ -14,3 +15,5 @@ getPokemonAllWithInfos(0, 10).then((pokemons) => {
   });
 });
 console.log("test");
+
+initSearchDialog();
