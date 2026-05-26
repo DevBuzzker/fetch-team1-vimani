@@ -80,6 +80,7 @@ function onLeftButtonClick(event) {
 }
 
 function onRightButtonClick(event) {
+  if (currentEndIndex + shift > 1350) return;
   onButtonClick(event, shift);
 }
 
