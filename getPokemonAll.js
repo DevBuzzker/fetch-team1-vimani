@@ -18,16 +18,33 @@ async function getPokemonAll() {
   //   .then((json) => console.log(json.results));
 }
 
+export let currentStartIndex = 0;
+export let currentEndIndex = 10;
+
+export function setIndices(start, end) {
+  currentStartIndex = start;
+  currentEndIndex = end;
+}
+
+let allNoInfosCache = [];
+
 export async function getPokemonAllWithInfos(startIndex, endIndex) {
-  const allNoInfos = await getPokemonAll();
-  // console.log(allNoInfos);
+  if (allNoInfosCache.length === 0) {
+    allNoInfosCache = await getPokemonAll();
+  }
+
   const allWithInfos = [];
-  // let i = startIndex;
+
   for (let i = startIndex; i < endIndex; i++) {
-    // console.log(pokemonNoInfo.name);
-    const pokemonNoInfo = allNoInfos[i];
-    var pokemonWithInfo = await getPokemonSingleReduced(pokemonNoInfo.url);
+    const pokemonNoInfo = allNoInfosCache[i];
+    const pokemonWithInfo = await getPokemonSingleReduced(pokemonNoInfo.url);
     allWithInfos.push(pokemonWithInfo);
   }
+
+  const indexLabel = document.getElementById("card-numbers");
+  if (indexLabel) {
+    indexLabel.textContent = `${startIndex + 1}-${endIndex}`;
+  }
+
   return allWithInfos;
 }
