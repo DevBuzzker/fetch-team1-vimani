@@ -25,6 +25,7 @@ export function showPokemonCard(pokemon) {
   const img = document.createElement("img");
   img.src = pokemon.image;
   img.classList.add("max-h-30");
+  img.classList.add("h-30");
   div.appendChild(img);
 
   const titlePara = document.createElement("p");
