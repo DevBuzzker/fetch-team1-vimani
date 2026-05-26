@@ -50,6 +50,11 @@ export function showScrollElements() {
   buttonLeft.classList.add(...buttonClasses);
   div.appendChild(buttonLeft);
 
+  const cardNumbers = document.createElement("para");
+  cardNumbers.textContent = "0/0";
+  cardNumbers.id = "card-numbers";
+  div.appendChild(cardNumbers);
+
   const buttonRight = document.createElement("button");
   buttonRight.textContent = ">";
   buttonRight.classList.add(...buttonClasses);

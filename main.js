@@ -11,7 +11,7 @@ const bodyElement = document.querySelector("body");
 console.log(bodyElement);
 showScrollElements();
 
-getPokemonAllWithInfos(0, 10).then((pokemons) => {
+getPokemonAllWithInfos(0, 20).then((pokemons) => {
   console.log(pokemons);
   pokemons.forEach((pokemon) => {
     // const para = document.createElement("p");

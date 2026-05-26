@@ -28,6 +28,9 @@ export async function getPokemonAllWithInfos(startIndex, endIndex) {
     const pokemonNoInfo = allNoInfos[i];
     var pokemonWithInfo = await getPokemonSingleReduced(pokemonNoInfo.url);
     allWithInfos.push(pokemonWithInfo);
+
+    var indexLabel = document.getElementById("card-numbers");
+    indexLabel.textContent = `${startIndex + 1}-${endIndex}`;
   }
   return allWithInfos;
 }
