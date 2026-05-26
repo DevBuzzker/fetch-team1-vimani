@@ -26,23 +26,25 @@ export function setIndices(start, end) {
   currentEndIndex = end;
 }
 
+let allNoInfosCache = [];
+
 export async function getPokemonAllWithInfos(startIndex, endIndex) {
-  const allNoInfos = await getPokemonAll();
-  // console.log(allNoInfos);
+  if (allNoInfosCache.length === 0) {
+    allNoInfosCache = await getPokemonAll();
+  }
+
   const allWithInfos = [];
-  // let i = startIndex;
-  currentStartIndex = startIndex;
-  currentEndIndex = endIndex;
 
   for (let i = startIndex; i < endIndex; i++) {
-    // console.log(pokemonNoInfo.name);
-    const pokemonNoInfo = allNoInfos[i];
-    var pokemonWithInfo = await getPokemonSingleReduced(pokemonNoInfo.url);
+    const pokemonNoInfo = allNoInfosCache[i];
+    const pokemonWithInfo = await getPokemonSingleReduced(pokemonNoInfo.url);
     allWithInfos.push(pokemonWithInfo);
   }
 
-  var indexLabel = document.getElementById("card-numbers");
-  indexLabel.textContent = `${startIndex + 1}-${endIndex}`;
+  const indexLabel = document.getElementById("card-numbers");
+  if (indexLabel) {
+    indexLabel.textContent = `${startIndex + 1}-${endIndex}`;
+  }
 
   return allWithInfos;
 }
