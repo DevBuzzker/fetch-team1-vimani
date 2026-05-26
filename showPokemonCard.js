@@ -1,3 +1,9 @@
+import {
+  currentStartIndex,
+  currentEndIndex,
+  getPokemonAllWithInfos,
+  setIndices,
+} from "./getPokemonAll.js";
 export function showPokemonCard(pokemon) {
   const container = document.querySelector("#pokemons");
   console.log(pokemon);
@@ -49,6 +55,7 @@ export function showScrollElements() {
   buttonLeft.textContent = "<";
   buttonLeft.classList.add(...buttonClasses);
   div.appendChild(buttonLeft);
+  buttonLeft.onclick = onLeftButtonClick;
 
   const cardNumbers = document.createElement("para");
   cardNumbers.textContent = "0/0";
@@ -59,6 +66,35 @@ export function showScrollElements() {
   buttonRight.textContent = ">";
   buttonRight.classList.add(...buttonClasses);
   div.appendChild(buttonRight);
+  buttonRight.onclick = onRightButtonClick;
 
   container.appendChild(div);
+}
+
+const shift = 10;
+
+function onLeftButtonClick(event) {
+  if (currentStartIndex - shift < 0) return;
+  onButtonClick(event, -shift);
+}
+
+function onRightButtonClick(event) {
+  onButtonClick(event, shift);
+}
+
+function onButtonClick(event, shift) {
+  // event.preventDefault();
+  const label = document.getElementById("card-numbers");
+  setIndices(currentStartIndex + shift, currentEndIndex + shift);
+  // const lastStartIndex = getPokemonAll.currentStartIndex;
+
+  getPokemonAllWithInfos(currentStartIndex, currentEndIndex).then(
+    (pokemons) => {
+      const container = document.querySelector("#pokemons");
+      container.innerHTML = "";
+      pokemons.forEach((pokemon) => {
+        showPokemonCard(pokemon);
+      });
+    },
+  );
 }

@@ -1,4 +1,8 @@
-import { getPokemonAllWithInfos } from "./getPokemonAll.js";
+import {
+  currentStartIndex,
+  currentEndIndex,
+  getPokemonAllWithInfos,
+} from "./getPokemonAll.js";
 import { showPokemonCard, showScrollElements } from "./showPokemonCard.js";
 
 console.log("main.js");
@@ -11,8 +15,8 @@ const bodyElement = document.querySelector("body");
 console.log(bodyElement);
 showScrollElements();
 
-getPokemonAllWithInfos(0, 20).then((pokemons) => {
-  console.log(pokemons);
+getPokemonAllWithInfos(currentStartIndex, currentEndIndex).then((pokemons) => {
+  // console.log(pokemons);
   pokemons.forEach((pokemon) => {
     // const para = document.createElement("p");
     // // console.log(pokemon);
