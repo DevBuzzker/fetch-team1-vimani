@@ -28,7 +28,7 @@ export function initSearchDialog() {
       dialogName.textContent = pokemon.name;
 
       //Bild
-      dialogImage.src = pokemon.sprites.other["official-artwork"].front_default;
+      dialogImage.src = pokemon.sprites.other.dream_world.front_default;
 
       //Stats (hp, attack, defense)
       const hp = pokemon.stats.find((s) => s.stat.name === "hp").base_stat;
