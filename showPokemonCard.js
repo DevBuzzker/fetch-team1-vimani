@@ -6,7 +6,7 @@ import {
 } from "./getPokemonAll.js";
 export function showPokemonCard(pokemon) {
   const container = document.querySelector("#pokemons");
-  console.log(pokemon);
+  // console.log(pokemon);
   const div = document.createElement("div");
   div.classList.add("border-black");
   div.classList.add("border-1");
