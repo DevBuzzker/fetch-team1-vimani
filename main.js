@@ -4,6 +4,7 @@ import {
   getPokemonAllWithInfos,
 } from "./getPokemonAll.js";
 import { showPokemonCard, showScrollElements } from "./showPokemonCard.js";
+import { initSearchDialog } from "./searchDialog.js";
 
 console.log("main.js");
 const bodyElement = document.querySelector("body");
@@ -26,3 +27,5 @@ getPokemonAllWithInfos(currentStartIndex, currentEndIndex).then((pokemons) => {
   });
 });
 console.log("test");
+
+initSearchDialog();
