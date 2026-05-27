@@ -47,6 +47,37 @@ export const initSearchDialog = () => {
 
       dialogStats.textContent = `HP: ${hp} | Attack: ${attack} | Defense: ${defense}`;
 
+      // Catch Btn
+      const catchBtn = document.createElement("button");
+      catchBtn.classList.add("px-4", "py-2", "rounded", "text-white", "mt-2");
+
+      //Catch funktion
+      const switchCatchBtn = () => {
+        const caught = localStorage.getItem(String(pokemon.id));
+        const caughtBool = caught === "true";
+
+        if (!caughtBool) {
+          catchBtn.classList.remove("bg-green-500");
+          catchBtn.classList.add("bg-red-500");
+          catchBtn.textContent = "Catch!";
+        } else {
+          catchBtn.classList.remove("bg-red-500");
+          catchBtn.classList.add("bg-green-500");
+          catchBtn.innerHTML = "<b>✓</b> in Dex";
+        }
+      };
+
+      switchCatchBtn();
+
+      catchBtn.onclick = () => {
+        const caught = localStorage.getItem(String(pokemon.id));
+        const newValue = !(caught === "true");
+        localStorage.setItem(String(pokemon.id), String(newValue));
+        switchCatchBtn();
+      };
+
+      dialogStats.appendChild(catchBtn);
+
       dialog.showModal();
     } catch (error) {
       dialogName.textContent = "Not found";
