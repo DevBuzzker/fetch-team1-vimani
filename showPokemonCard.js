@@ -64,7 +64,7 @@ function styleCatchBtn(catchBtn, pokemon) {
   } else {
     catchBtn.classList.remove(...buttonRedClasses);
     catchBtn.classList.add(...buttonGreenClasses);
-    catchBtn.textContent = "✓ in Dex";
+    catchBtn.innerHTML = "<b>✓</b> in Dex"; // bold Tick (Hacken) ✓
   }
 }
 
