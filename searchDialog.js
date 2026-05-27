@@ -1,6 +1,6 @@
 import { getPokemonSingle } from "./getPokemonSingle.js";
 
-export function initSearchDialog() {
+export const initSearchDialog = () => {
   const searchInput = document.querySelector("#searchInput");
   const searchButton = document.querySelector("#searchButton");
 
@@ -12,6 +12,12 @@ export function initSearchDialog() {
 
   closeDialog.addEventListener("click", () => {
     dialog.close();
+  });
+
+  searchInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      searchButton.click();
+    }
   });
 
   searchButton.addEventListener("click", async () => {
@@ -51,4 +57,4 @@ export function initSearchDialog() {
       dialog.showModal();
     }
   });
-}
+};
