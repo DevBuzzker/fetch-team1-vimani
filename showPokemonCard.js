@@ -4,6 +4,11 @@ import {
   getPokemonAllWithInfos,
   setIndices,
 } from "./getPokemonAll.js";
+
+const buttonClasses = ["px-3", "py-2", "rounded", "transition", "text-white"];
+const buttonRedClasses = ["bg-red-500", "hover:bg-red-600"];
+const buttonGreenClasses = ["bg-green-500", "hover:bg-green-600"];
+
 export function showPokemonCard(pokemon) {
   const container = document.querySelector("#pokemons");
   // console.log(pokemon);
@@ -32,7 +37,35 @@ export function showPokemonCard(pokemon) {
   titlePara.textContent = "#" + pokemon.id + " " + pokemon.name;
   div.appendChild(titlePara);
 
+  const catchBtn = document.createElement("button");
+  catchBtn.classList.add(...buttonClasses);
+  catchBtn.classList.add("mt-2");
+  div.appendChild(catchBtn);
+  styleCatchBtn(catchBtn, pokemon);
+
+  catchBtn.onclick = () => {
+    const caught = localStorage.getItem(String(pokemon.id));
+    const caughtBool = caught === "true";
+    const newValue = !caughtBool;
+    localStorage.setItem(String(pokemon.id), String(newValue));
+    styleCatchBtn(catchBtn, pokemon);
+  };
+
   container.appendChild(div);
+}
+
+function styleCatchBtn(catchBtn, pokemon) {
+  const caught = localStorage.getItem(String(pokemon.id));
+  const caughtBool = caught === "true";
+  if (!caughtBool) {
+    catchBtn.classList.remove(...buttonGreenClasses);
+    catchBtn.classList.add(...buttonRedClasses);
+    catchBtn.textContent = "Catch!";
+  } else {
+    catchBtn.classList.remove(...buttonRedClasses);
+    catchBtn.classList.add(...buttonGreenClasses);
+    catchBtn.innerHTML = "<b>✓</b> in Dex"; // bold Tick (Hacken) ✓
+  }
 }
 
 export function showScrollElements() {
@@ -42,19 +75,10 @@ export function showScrollElements() {
   div.classList.add("flex");
   div.classList.add("justify-between");
 
-  const buttonClasses = [
-    "px-3",
-    "py-2",
-    "bg-red-500",
-    "text-white",
-    "rounded",
-    "hover:bg-red-600",
-    "transition",
-  ];
-
   const buttonLeft = document.createElement("button");
   buttonLeft.textContent = "<";
   buttonLeft.classList.add(...buttonClasses);
+  buttonLeft.classList.add(...buttonRedClasses);
   div.appendChild(buttonLeft);
   buttonLeft.onclick = onLeftButtonClick;
 
@@ -66,6 +90,7 @@ export function showScrollElements() {
   const buttonRight = document.createElement("button");
   buttonRight.textContent = ">";
   buttonRight.classList.add(...buttonClasses);
+  buttonRight.classList.add(...buttonRedClasses);
   div.appendChild(buttonRight);
   buttonRight.onclick = onRightButtonClick;
 
