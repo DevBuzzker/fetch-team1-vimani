@@ -37,6 +37,8 @@ export function showPokemonCard(pokemon) {
   titlePara.textContent = "#" + pokemon.id + " " + pokemon.name;
   div.appendChild(titlePara);
 
+  createStatsSection(div, pokemon);
+
   const catchBtn = document.createElement("button");
   catchBtn.classList.add(...buttonClasses);
   catchBtn.classList.add("mt-2");
@@ -52,6 +54,27 @@ export function showPokemonCard(pokemon) {
   };
 
   container.appendChild(div);
+}
+
+function createStatsSection(parent, pokemon) {
+  const grid = document.createElement("div");
+  grid.classList.add("grid");
+  grid.classList.add("grid-cols-2");
+  grid.classList.add("gap-x-2");
+  const attackPara = document.createElement("p");
+  attackPara.textContent = "⚔️" + pokemon.attack;
+  grid.appendChild(attackPara);
+  const defencePara = document.createElement("p");
+  defencePara.textContent = "🛡️" + pokemon.defense;
+  grid.appendChild(defencePara);
+  const healthPara = document.createElement("p");
+  healthPara.textContent = "❤️" + pokemon.hp;
+  grid.appendChild(healthPara);
+  const speedPara = document.createElement("p");
+  speedPara.textContent = "👟" + pokemon.speed;
+  grid.appendChild(speedPara);
+
+  parent.appendChild(grid);
 }
 
 function styleCatchBtn(catchBtn, pokemon) {
