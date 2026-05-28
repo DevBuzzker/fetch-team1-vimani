@@ -9,6 +9,7 @@ export const initSearchDialog = () => {
   const dialogImage = document.querySelector("#dialogImage");
   const dialogStats = document.querySelector("#dialogStats");
   const closeDialog = document.querySelector("#closeDialog");
+  const dialogCatchContainer = document.querySelector("#dialogCatchContainer");
 
   closeDialog.addEventListener("click", () => {
     dialog.close();
@@ -44,10 +45,14 @@ export const initSearchDialog = () => {
       const defense = pokemon.stats.find(
         (s) => s.stat.name === "defense",
       ).base_stat;
+      const speed = pokemon.stats.find(
+        (s) => s.stat.name === "speed",
+      ).base_stat;
 
-      dialogStats.textContent = `HP: ${hp} | Attack: ${attack} | Defense: ${defense}`;
+      dialogStats.textContent = `HP: ${hp} | Attack: ${attack} | Defense: ${defense} | Speed: ${speed}`;
 
       // Catch Btn
+      dialogCatchContainer.innerHTML = "";
       const catchBtn = document.createElement("button");
       catchBtn.classList.add("px-4", "py-2", "rounded", "text-white", "mt-2");
 
@@ -76,7 +81,7 @@ export const initSearchDialog = () => {
         switchCatchBtn();
       };
 
-      dialogStats.appendChild(catchBtn);
+      dialogCatchContainer.appendChild(catchBtn);
 
       dialog.showModal();
     } catch (error) {
