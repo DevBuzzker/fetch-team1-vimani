@@ -53,9 +53,40 @@ async function showPokedex() {
         grid.appendChild(hpPara);
         grid.appendChild(speedPara);
 
+        const noteBtn = document.createElement("button");
+        noteBtn.textContent = "📝 Notiz";
+        noteBtn.classList.add("bg-gray-200", "rounded", "px-2", "py-1", "text-xs", "mt-2");
+
+        const textarea = document.createElement("textarea");
+        textarea.placeholder = "Notiz schreiben...";
+        textarea.classList.add("border-1", "border-gray-300", "rounded", "p-1", "text-xs", "w-full", "mt-2");
+        textarea.style.display = "none";
+        textarea.value = localStorage.getItem("note-" + data.id) || "";
+
+        const saveBtn = document.createElement("button");
+        saveBtn.textContent = "Speichern";
+        saveBtn.classList.add("bg-red-500", "text-white", "rounded", "px-2", "py-1", "text-xs", "mt-1");
+        saveBtn.style.display = "none";
+
+        noteBtn.onclick = () => {
+            const isOpen = textarea.style.display === "block";
+            textarea.style.display = isOpen ? "none" : "block";
+            saveBtn.style.display = isOpen ? "none" : "block";
+            noteBtn.textContent = isOpen ? "📝 Notiz" : "❌ Schließen";
+        };
+
+        saveBtn.onclick = () => {
+            localStorage.setItem("note-" + data.id, textarea.value);
+            saveBtn.textContent = "✅ Gespeichert!";
+            setTimeout(() => saveBtn.textContent = "Speichern", 1500);
+        };
+
         card.appendChild(img);
         card.appendChild(name);
         card.appendChild(grid);
+        card.appendChild(noteBtn);
+        card.appendChild(textarea);
+        card.appendChild(saveBtn);
         container.appendChild(card);
     }
 }
