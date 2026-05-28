@@ -5,6 +5,7 @@ export const initSearchDialog = () => {
   const searchButton = document.querySelector("#searchButton");
 
   const dialog = document.querySelector("#pokemonDialog");
+  const dialogId = document.querySelector("#dialogId");
   const dialogName = document.querySelector("#dialogName");
   const dialogImage = document.querySelector("#dialogImage");
   const dialogStats = document.querySelector("#dialogStats");
@@ -31,13 +32,16 @@ export const initSearchDialog = () => {
       const url = `https://pokeapi.co/api/v2/pokemon/${value.toLowerCase()}`;
       const pokemon = await getPokemonSingle(url);
 
+      //Id
+      dialogId.textContent = `#${pokemon.id}`;
+
       //Name
       dialogName.textContent = pokemon.name;
 
       //Bild
       dialogImage.src = pokemon.sprites.other.dream_world.front_default;
 
-      //Stats (hp, attack, defense)
+      //Stats (hp, attack, defense, speed)
       const hp = pokemon.stats.find((s) => s.stat.name === "hp").base_stat;
       const attack = pokemon.stats.find(
         (s) => s.stat.name === "attack",
@@ -49,14 +53,14 @@ export const initSearchDialog = () => {
         (s) => s.stat.name === "speed",
       ).base_stat;
 
-      dialogStats.textContent = `HP: ${hp} | Attack: ${attack} | Defense: ${defense} | Speed: ${speed}`;
+      dialogStats.textContent = `Attack: ${attack} | Defense: ${defense} | HP: ${hp} | Speed: ${speed}`;
 
       // Catch Btn
       dialogCatchContainer.innerHTML = "";
       const catchBtn = document.createElement("button");
       catchBtn.classList.add("px-4", "py-2", "rounded", "text-white", "mt-2");
 
-      //Catch funktion
+      //catchbtn funktion
       const switchCatchBtn = () => {
         const caught = localStorage.getItem(String(pokemon.id));
         const caughtBool = caught === "true";
