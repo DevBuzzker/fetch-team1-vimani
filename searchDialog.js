@@ -9,6 +9,7 @@ export const initSearchDialog = () => {
   const dialogImage = document.querySelector("#dialogImage");
   const dialogStats = document.querySelector("#dialogStats");
   const closeDialog = document.querySelector("#closeDialog");
+  const dialogCatchContainer = document.querySelector("#dialogCatchContainer");
 
   closeDialog.addEventListener("click", () => {
     dialog.close();
@@ -44,8 +45,43 @@ export const initSearchDialog = () => {
       const defense = pokemon.stats.find(
         (s) => s.stat.name === "defense",
       ).base_stat;
+      const speed = pokemon.stats.find(
+        (s) => s.stat.name === "speed",
+      ).base_stat;
 
-      dialogStats.textContent = `HP: ${hp} | Attack: ${attack} | Defense: ${defense}`;
+      dialogStats.textContent = `HP: ${hp} | Attack: ${attack} | Defense: ${defense} | Speed: ${speed}`;
+
+      // Catch Btn
+      dialogCatchContainer.innerHTML = "";
+      const catchBtn = document.createElement("button");
+      catchBtn.classList.add("px-4", "py-2", "rounded", "text-white", "mt-2");
+
+      //Catch funktion
+      const switchCatchBtn = () => {
+        const caught = localStorage.getItem(String(pokemon.id));
+        const caughtBool = caught === "true";
+
+        if (!caughtBool) {
+          catchBtn.classList.remove("bg-green-500");
+          catchBtn.classList.add("bg-red-500");
+          catchBtn.textContent = "Catch!";
+        } else {
+          catchBtn.classList.remove("bg-red-500");
+          catchBtn.classList.add("bg-green-500");
+          catchBtn.innerHTML = "<b>✓</b> in Dex";
+        }
+      };
+
+      switchCatchBtn();
+
+      catchBtn.onclick = () => {
+        const caught = localStorage.getItem(String(pokemon.id));
+        const newValue = !(caught === "true");
+        localStorage.setItem(String(pokemon.id), String(newValue));
+        switchCatchBtn();
+      };
+
+      dialogCatchContainer.appendChild(catchBtn);
 
       dialog.showModal();
     } catch (error) {
