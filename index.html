@@ -65,7 +65,10 @@
 
     <dialog id="pokemonDialog" class="p-2 rounded-xl w-100 shadow-xl m-auto">
       <div class="bg-white p-5 flex flex-col items-center gap-3">
-        <h2 id="dialogName" class="text-xl font-bold capitalize"></h2>
+        <div class="flex gap-1">
+          <p id="dialogId" class="text-xl font-bold capitalize"></p>
+          <h2 id="dialogName" class="text-xl font-bold capitalize"></h2>
+        </div>
         <img id="dialogImage" class="w-50 h-50" />
         <p id="dialogStats" class="text-sm text-gray-600 text-center"></p>
         <div id="dialogCatchContainer"></div>
