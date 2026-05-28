@@ -38,28 +38,24 @@
       </div>
   </nav>
   <main class="pt-15 min-h-screen">
-    <h1>pokedex</h1>
     <div id="pokedex-container" class="flex flex-wrap">
     </div>
   </main>
 
-<dialog id="pokemonDialog" class="p-2 rounded-xl w-100 shadow-xl m-auto">
-      <div class="bg-white p-5 flex flex-col items-center gap-3">
-        <div class="flex gap-1">
-          <p id="dialogId" class="text-xl font-bold capitalize"></p>
-          <h2 id="dialogName" class="text-xl font-bold capitalize"></h2>
-        </div>
-        <img id="dialogImage" class="w-50 h-50" />
-        <p id="dialogStats" class="text-sm text-gray-600 text-center"></p>
-        <div id="dialogCatchContainer"></div>
-        <button
-          id="closeDialog"
-          class="absolute top-1 right-3 text-gray-500 hover:text-red-600 text-2xl font-bold"
-        >
-          X
-        </button>
+  <dialog id="pokemonDialog" class="p-2 rounded-xl w-100 shadow-xl m-auto">
+    <div class="bg-white p-5 flex flex-col items-center gap-3">
+      <div class="flex gap-1">
+        <p id="dialogId" class="text-xl font-bold capitalize"></p>
+        <h2 id="dialogName" class="text-xl font-bold capitalize"></h2>
       </div>
-    </dialog>
+      <img id="dialogImage" class="w-50 h-50" />
+      <p id="dialogStats" class="text-sm text-gray-600 text-center"></p>
+      <div id="dialogCatchContainer"></div>
+      <button id="closeDialog" class="absolute top-1 right-3 text-gray-500 hover:text-red-600 text-2xl font-bold">
+        X
+      </button>
+    </div>
+  </dialog>
   <footer class="w-full text-center px-6 py-4 bg-white/25 backdrop-blur-xs border-t border-white/30 shadow-md mt-8">
     <p class="text-sm text-gray-700">
       Pokédex Diary — Built with
